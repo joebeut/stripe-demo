@@ -6,7 +6,7 @@ Since I am using Angular for the front end/JavaScript, I will have to link out t
 
 I like using Angular for my payments app because the single-page architecture makes all of the user interactions feel real-time. I can also use AJAX calls to the MySQL database on the back end to pull any information, like the items and price list. 
 
-My challenge here is not to copy a previous app that I've built with Stripe, and to not add too much funcationality.
+My challenge here is not to copy a previous app that I've built with Stripe, and to not add too much funcationality. I will use the basic Angular/PHP structure that I've used for other apps/websites I've built for other side projects.
 
 A few things that could be added to the basic functionality:
 - Basic CRUD functions like pulling shopping items from DB

@@ -1,0 +1,23 @@
+
+<div class="item-container">
+
+  <div class="item-container-title">Swim Gear Catalog</div>
+
+  <div ng-repeat="item in orderItems">
+    <div class="item-box" style="cursor:pointer;">
+      <div class="item-line">
+        <div class="item-title-text">{{item.itemName}}</div>
+        <div class="item-add" ng-click="addToCart(item)">Add</div>
+      </div>
+      <div class="item-line">
+        <div class="item-description">
+          {{item.itemDescription}}
+        </div>
+      </div>
+      <div class="item-line">
+        <div class="item-price">${{item.itemPrice}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+  
+<div class="item-container">
+
+  <div class="item-container-title">Your Cart</div>
+  
+  <div class="cart-subtitle" ng-if="cart.itemCount==0">No items in cart.</div>
+
+  <div ng-repeat="item in cart.cartItems track by $index">
+    <div class="item-box" style="cursor:pointer;">
+      <div class="item-line">
+        <div class="item-title-text">{{item.itemName}}</div>
+        <div class="item-add" ng-click="removeFromCart(item)">X</div>
+      </div>
+      <div class="item-line">
+        <div class="item-description">
+          {{item.itemDescription}}
+        </div>
+      </div>
+      <div class="item-line">
+        <div class="item-price">${{item.itemPrice}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-info" ng-if="cart.itemCount!=0">
+    <div class="cart-subtotal">Subtotal: ${{cart.subtotal}}</div>
+    <div class="cart-subtotal">Sales Tax: ${{cart.salesTax}}</div>
+    <div class="cart-total">Total: ${{cart.total}}</div>
+  </div>
+
+  <div class="cart-info" ng-if="cart.itemCount!=0">
+    <div class="order-button">Continue</div>
+  </div>
+
+
+</div>
+
+<!-- </div> -->

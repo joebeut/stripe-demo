@@ -1,33 +1,46 @@
 'use strict';
 
-var myAPP = angular.module('stripeApp', [ 'ngRoute']);
+// var myAPP = angular.module('stripeApp', [ 'ngRoute']);
+var myAPP = angular.module('stripeApp', [ 'ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache' ]);
+
 
 myAPP.config(function($routeProvider) {
 // myAPP.config(function($routeProvider) {
 
         $routeProvider
              .when('/', {
-                  templateUrl: 'homepage/home.html',
-                  controller: 'homeController',
+                  templateUrl: 'pages/home.html',
+                  controller: 'orderController',
               })
              .when('/home', {
-                  templateUrl: 'homepage/home.html',
-                  controller: 'homeController',
+                  templateUrl: 'pages/home.html',
+                  controller: 'orderController',
               }).
               when('/order', {
-                  templateUrl: 'pages/order.html',
-                  controller: 'homeController',
+                  templateUrl: 'pages/home.html',
+                  controller: 'orderController',
               }).
               when('/cart', {
-                  templateUrl: 'pages/cart.html',
-                  controller: 'homeController',
+                  templateUrl: 'pages/home.html',
+                  controller: 'orderController',
               }).
               when('/confirmation', {
-                  templateUrl: 'pages/confirmation.html',
-                  controller: 'homeController',
-              }).
-              otherwise({
-                  redirectTo: '/'
+                  templateUrl: 'pages/home.html',
+                  controller: 'orderController',
               });
-        // use the HTML5 History API
     });
+
+
+myAPP.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+    var original = $location.path;
+    $location.path = function (path, reload) {
+        if (reload === false) {
+            var lastRoute = $route.current;
+            var un = $rootScope.$on('$locationChangeSuccess', function () {
+                $route.current = lastRoute;
+                un();
+            });
+        }
+        return original.apply($location, [path]);
+    };
+}])

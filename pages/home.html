@@ -1,0 +1,31 @@
+
+<!-- Top bar - common across all pages. View below. -->
+<div class="topbar" id="topbar">
+  <div class="topbar-logo"><a href="./#/home">Joe's Swim Shop</a></div>
+
+  <div class="topbar-link-box">
+    <div class="topbar-link" ng-click="changePage('cart')">Cart ({{cart.itemCount}})</div>
+    
+    <div class="topbar-link" ng-click="changePage('order')">Home</div>
+  </div>
+</div>
+
+<div ng-if="page=='home'">
+  <div ng-include="'./pages/order.html'"></div>
+</div>
+
+<div ng-if="page=='order'">
+  <div ng-include="'./pages/order.html'"></div>
+</div>
+
+<div ng-if="page=='cart'">
+  <div ng-include="'./pages/cart.html'"></div>
+</div>
+
+<div ng-if="page=='confirmation'">
+  <div ng-include="'./pages/confirmation.html'"></div>
+</div>
+
+
+
+<!-- </div> -->
