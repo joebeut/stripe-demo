@@ -4,18 +4,23 @@
 
   <div ng-repeat="item in orderItems">
     <div class="item-box" style="cursor:pointer;">
-      <div class="item-line">
-        <div class="item-title-text">{{item.itemName}}</div>
-        <div class="item-add" ng-click="addToCart(item)">Add</div>
-      </div>
-      <div class="item-line">
-        <div class="item-description">
-          {{item.itemDescription}}
+      <div class="item-box-left">
+        <div class="item-line">
+          <div class="item-title-text">{{item.itemName}}</div>
+        </div>
+        <div class="item-line">
+          <div class="item-description">
+            {{item.itemDescription}}
+          </div>
+        </div>
+        <div class="item-line">
+          <div class="item-price">${{item.itemPrice}}</div>
         </div>
       </div>
-      <div class="item-line">
-        <div class="item-price">${{item.itemPrice}}</div>
-      </div>
+      <div class="item-box-right">
+          <div class="item-add" ng-click="addToCart(item)" ng-if="!item.selected"><img src="./img/add_shopping_cart.svg" class="cart-icon" width="24px"></div>
+          <div class="item-add" ng-click="addToCart(item)" ng-if="item.selected"><img src="./img/add_shopping_cart.svg" class="cart-icon" width="24px"></div>
+        </div>
     </div>
   </div>
 

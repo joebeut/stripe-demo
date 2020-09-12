@@ -5,20 +5,25 @@
   <div class="cart-subtitle" ng-if="cart.itemCount==0">No items in cart.</div>
 
   <div ng-repeat="item in cart.cartItems track by $index">
-    <div class="item-box" style="cursor:pointer;">
-      <div class="item-line">
-        <div class="item-title-text">{{item.itemName}}</div>
-        <div class="item-add" ng-click="removeFromCart(item)">X</div>
-      </div>
-      <div class="item-line">
-        <div class="item-description">
-          {{item.itemDescription}}
+    <div class="item-box cart-box" style="cursor:pointer;">
+      <div class="item-box-left">
+        <div class="item-line">
+          <div class="item-title-text">{{item.itemName}}</div>
+        </div>
+        <div class="item-line">
+          <div class="item-description">
+            {{item.itemDescription}}
+          </div>
+        </div>
+        <div class="item-line">
+          <div class="item-price">${{item.itemPrice}}</div>
         </div>
       </div>
-      <div class="item-line">
-        <div class="item-price">${{item.itemPrice}}</div>
+      <div class="item-box-right">
+        <div class="item-add" ng-click="removeFromCart(item)"><img src="./img/remove_circle_outline.svg" class="cart-icon cart-box-icon" width="24px"></div>
       </div>
     </div>
+
   </div>
 
   <div class="cart-info" ng-if="cart.itemCount!=0">
@@ -30,6 +35,6 @@
  
 
   <div class="cart-info" ng-if="cart.itemCount!=0">
-    <div class="order-button" ng-click="sendToPayment()">Continue</div>
+    <div class="order-button" ng-click="sendToPayment()" style="cursor:pointer;">Continue</div>
   </div>
 </div>

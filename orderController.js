@@ -12,7 +12,8 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
     "salesTax": 0,
     "total": 0,
     "itemCount": 0,
-    "cartItems": []
+    "cartItems": [],
+    "selected": false
   }; 
 
   // Array of item objects to populate the store - could pull from DB or JSON
@@ -88,6 +89,7 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
 
   $scope.addToCart = function(item) {
     // Add item to cart, stored on the JS controller - could extend to use Ajax calls to store in DB, etc.
+    item.selected = true;
     var addItem = item;
     addItem.itemId = $scope.cart.itemCount;
 
