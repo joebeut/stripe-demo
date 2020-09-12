@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html ng-app="stripeApp" ng-controller="homeController">
+<html ng-app="stripeApp">
 
 <head>
   <meta charset="utf-8" />
@@ -9,6 +9,7 @@
 
   <!-- Import CSS -->
   <link rel="stylesheet" href="./css/swimstyle.css" />
+  <!-- <link rel="stylesheet" href="./css/stripe.css" /> -->
 
   <script src="./node_modules/jquery/dist/jquery.js"></script>
 
@@ -25,18 +26,18 @@
   <link href="https://material.angularjs.org/1.1.5/docs.css" rel="stylesheet">
   <script src="./node_modules/angular-route/angular-route.js"></script>
 
-  <!-- <script src="./app.js?ver=1"></script> -->
   <script src="app.js"></script>
-  <script src="./homeController.js"></script>
   <script src="./orderController.js"></script>
 
 
   <!-- Stripe and Payments Imports -->
   <script src="https://js.stripe.com/v3/"></script>
-  
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  <!-- <script src="./payment/client.js" defer></script> -->
+
 </head>
 
-<body ng-controller="homeController">
+<body ng-controller="orderController">
 
   <div ng-view style="height:100%;"></div>
 

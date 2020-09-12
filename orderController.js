@@ -1,5 +1,11 @@
 angular.module('stripeApp').controller('orderController', function ($scope, $http, $window, $location) {
   
+  // Function loaded on page load
+  checkPage();
+
+  // Scope Variables (defaults)
+  $scope.confirmation = {};
+
   // object to store item objects as cart and cart attributes
   $scope.cart = {
     "subtotal": 0,
@@ -78,9 +84,7 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
   ]; // could pull from DB or JSON
 
 
-  // Functions loaded on page load
-  checkPage();
-
+  /***** Scope Functions -- Able to call these in HTML *****/
 
   $scope.addToCart = function(item) {
     // Add item to cart, stored on the JS controller - could extend to use Ajax calls to store in DB, etc.
@@ -138,6 +142,23 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
 
   $scope.sendToPayment = function(){
 
+    // Retrieve the Stripe session from php
+    var request = $http({
+        method: "post",
+        url: "./ajax/addCartToSession.php",
+        data: {
+            cart: $scope.cart
+        },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    });
+
+    request.success(function (data) {
+        console.log("Success data transfer ");
+        console.log(data);
+        $scope.stripePaymentIntent = data;
+        $window.location.href = "./payment/checkout.html";
+    });
+
   };
 
   $scope.changePage = function(page){
@@ -151,6 +172,18 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
     }
   }
 
+  /***** Local Functions -- usable only locally in this controller *****/
+  function getConfirmation() {
+    $http.post("./ajax/getConfirmation.php").success(function(data){
+
+      // Populate the confirmation object with data stored on the PHP session variables
+      $scope.confirmation = {
+        "stripePaymentId": data.stripePaymentId,
+        "orderSubtotal": data.orderSubtotal,
+        "orderTotal": data.orderTotal
+      }
+    });
+  }
 
   function checkPage(){
 
@@ -165,12 +198,14 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
       $scope.page='cart';
     }
     else if($location.path()=="/confirmation"){
+      getConfirmation();
       $scope.page='confirmation';
+    }
+    else{
+      $scope.page='order';
     }
     
   };
-
-
   
 
 });

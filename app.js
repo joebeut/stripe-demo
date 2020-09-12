@@ -1,12 +1,8 @@
 'use strict';
 
-// var myAPP = angular.module('stripeApp', [ 'ngRoute']);
-var myAPP = angular.module('stripeApp', [ 'ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache' ]);
-
+var myAPP = angular.module('stripeApp', [ 'ngRoute']);
 
 myAPP.config(function($routeProvider) {
-// myAPP.config(function($routeProvider) {
-
         $routeProvider
              .when('/', {
                   templateUrl: 'pages/home.html',
@@ -29,7 +25,6 @@ myAPP.config(function($routeProvider) {
                   controller: 'orderController',
               });
     });
-
 
 myAPP.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
     var original = $location.path;

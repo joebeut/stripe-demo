@@ -14,3 +14,5 @@ A few things that could be added to the basic functionality:
 - Storing customer information in DB
 - Adding a view for more information on an item before adding it to the cart
 - Sending order confirmation view email (AWS SES) or text (Twilio)
+
+Current state of app processes the payment via the Stripe Payment Intent API. 
