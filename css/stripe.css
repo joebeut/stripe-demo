@@ -158,3 +158,11 @@ button:disabled {
     width: 80vw;
   }
 }
+
+/* Responsive CSS design for larger screens (defaults above are mobile-first) */
+@media (min-width: 700px)  { 
+  form {
+    width: 500px;
+    padding: 40px;
+  }
+}
