@@ -1,6 +1,6 @@
-#Welcome to Joe’s Swim Shop!
+# Welcome to Joe’s Swim Shop!
 
-##Live demo available at joebeutler.com/stripe-demo
+## Live demo available at joebeutler.com/stripe-demo
 
 Joe’s Swim Shop is a basic e-commerce web application that allows you to order the finest in swimming gear. You are able to browse our inventory, add items to your shopping cart, remove items from the cart, and pay for your order with your credit card through Stripe. 
 
