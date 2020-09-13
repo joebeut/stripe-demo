@@ -184,6 +184,7 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
       // Populate the confirmation object with data stored on the PHP session variables
       $scope.confirmation = {
         "stripePaymentId": data.stripePaymentId,
+        "stripeChargeId": data.stripeChargeId,
         "orderSubtotal": data.orderSubtotal,
         "orderTotal": data.orderTotal,
         "orderItems": data.orderItems.cartItems
