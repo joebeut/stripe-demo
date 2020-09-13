@@ -1,5 +1,7 @@
 #Welcome to Joe’s Swim Shop!
 
+##Live demo available at joebeutler.com/stripe-demo
+
 Joe’s Swim Shop is a basic e-commerce web application that allows you to order the finest in swimming gear. You are able to browse our inventory, add items to your shopping cart, remove items from the cart, and pay for your order with your credit card through Stripe. 
 
 Since Joe’s Swim Shop is similar to other Stripe-enabled apps I have built in the past, I challenged myself not to use any code or designs from previous projects. I mapped out the basic functionality required to provide a suitable e-commerce user experience. I first decided on a concept, then I crafted the product list in a JSON object with the attributes necessary for the shopping experience. These included product name, type, brand, description, and price. Finally, I decided which pages or views I would display to the user, and I started coding.
