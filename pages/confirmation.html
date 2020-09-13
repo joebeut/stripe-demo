@@ -1,11 +1,13 @@
+<!-- confirmation.html - This view displays the items in the order confrimation -->
 <div class="item-container">
 
-  <div class="item-container-title">Confirmation</div>
+  <div class="item-container-title">Order Confirmation</div>
   
   <div class="confirmation-line">
     <div class="confirmation-description">Thank you for ordering from Joe's Swim Shop. Your order has been received by our team, and we will be shipping it shortly. Please allow 7-10 days for your items to arrive.</div>
   </div>
 
+  <!-- Display order info -->
   <div class="confirmation-line">
     <div class="confirmation-subtitle">Stripe Payment Intent ID:</div>
     <div class="confirmation-text">{{confirmation.stripePaymentId}}</div>
@@ -13,17 +15,18 @@
 
   <div class="confirmation-line">
     <div class="confirmation-subtitle">Subtotal:</div>
-    <div class="confirmation-text">{{ confirmation.orderSubtotal }}</div>
+    <div class="confirmation-text">${{ confirmation.orderSubtotal }}</div>
   </div>
 
   <div class="confirmation-line">
     <div class="confirmation-subtitle">Total:</div>
-    <div class="confirmation-text">{{ confirmation.orderTotal }} </div>
+    <div class="confirmation-text">${{ confirmation.orderTotal }} </div>
   </div>
 
   <div class="confirmation-line">
     <div class="confirmation-subtitle">Items:</div>
-    <div class="confirmation-text">To list items here.</div>
+    <!-- Loop through and display all items the user ordered -->
+    <div class="confirmation-items" ng-repeat="item in confirmation.orderItems">{{ item.itemName }}</div>
   </div>
 
 </div>

@@ -1,4 +1,4 @@
-
+<!-- index.html - This is the home page and primary container for the app -->
 <!doctype html>
 <html ng-app="stripeApp">
 
@@ -11,36 +11,23 @@
   <link rel="stylesheet" href="./css/swimstyle.css" />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&display=swap" rel="stylesheet">
 
-  <!-- <link rel="stylesheet" href="./css/stripe.css" /> -->
-
+  <!-- Import JS and Angular -->
   <script src="./node_modules/jquery/dist/jquery.js"></script>
 
-
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.2/angular-material.js"></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.2/angular-material.css" rel="stylesheet">
-  <link href="https://material.angularjs.org/1.1.5/docs.css" rel="stylesheet">
   <script src="./node_modules/angular-route/angular-route.js"></script>
 
+  <!-- Include app and controller -->
   <script src="app.js"></script>
   <script src="./orderController.js"></script>
 
-
-  <!-- Stripe and Payments Imports -->
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-  <!-- <script src="./payment/client.js" defer></script> -->
-
+  <!-- Stripe and Payments Imports - included in checkout.html -->
 </head>
 
+<!-- Add controller to the body to enable Angular functionality -->
 <body ng-controller="orderController">
 
+  <!-- Include the Angular view -->
   <div ng-view style="height:100%;"></div>
 
 </body>

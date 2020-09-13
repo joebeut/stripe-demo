@@ -1,10 +1,15 @@
-<!-- Top bar - common across all pages. View below. -->
+<!-- home.html - This page is the main container for the SPA. Common elements are included on top, Views are included below. -->
+<!-- Top bar - common across all pages. -->
 <div class="topbar" id="topbar">
   <div class="topbar-logo"><a href="./#/order">Joe's Swim Shop</a></div>
 
   <div class="topbar-link-box">
+    <!-- Display the number of items in the cart -->
     <div class="topbar-link topbar-link-text" ng-click="changePage('cart')" style="cursor:pointer;">({{cart.itemCount}})</div>
-    <div class="topbar-link" ng-click="changePage('cart')" style="cursor:pointer;"><img src="./img/shopping_cart.svg" class="cart-icon-top" width="30px"></div>
+    <!-- Display a custom shopping cart icon (from Google Material) -->
+    <div class="topbar-link" ng-click="changePage('cart')" style="cursor:pointer;">
+      <img src="./img/shopping_cart.svg" class="cart-icon-top" width="30px">
+    </div>
   </div>
 </div>
 

@@ -1,4 +1,5 @@
 <?php
+  // create.php - provided by Stripe Payment API, passes order total from Session to create a paymentIntent and return the client secret.
   session_start();
 
   require '../vendor/autoload.php';

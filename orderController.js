@@ -6,14 +6,13 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
   // Scope Variables (defaults)
   $scope.confirmation = {};
 
-  // object to store item objects as cart and cart attributes
+  // Object to store item objects as cart and cart attributes
   $scope.cart = {
     "subtotal": 0,
     "salesTax": 0,
     "total": 0,
     "itemCount": 0,
-    "cartItems": [],
-    "selected": false
+    "cartItems": []
   }; 
 
   // Array of item objects to populate the store - could pull from DB or JSON
@@ -82,14 +81,13 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
       "brand": "Arena",
       "itemPrice": "46.99"
     }
-  ]; // could pull from DB or JSON
+  ];
 
 
   /***** Scope Functions -- Able to call these in HTML *****/
 
   $scope.addToCart = function(item) {
     // Add item to cart, stored on the JS controller - could extend to use Ajax calls to store in DB, etc.
-    item.selected = true;
     var addItem = item;
     addItem.itemId = $scope.cart.itemCount;
 
@@ -100,7 +98,6 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
     // Add sales tax, using Texas rate a default
     $scope.cart.salesTax = parseFloat($scope.cart.salesTax) + parseFloat(addItem.itemPrice)*.0825;
     $scope.cart.salesTax = parseFloat($scope.cart.salesTax).toFixed(2);
-
 
     // Add item subtotal and tax for this item to the running cart total
     $scope.cart.total = parseFloat($scope.cart.subtotal) + parseFloat($scope.cart.salesTax);
@@ -120,11 +117,11 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
     $scope.cart.subtotal = parseFloat($scope.cart.subtotal) - parseFloat(removeItem.itemPrice);
     $scope.cart.subtotal = parseFloat($scope.cart.subtotal).toFixed(2);
 
-    // Subtract item sales tax from sales tax
+    // Subtract item sales tax from cart sales tax
     $scope.cart.salesTax = parseFloat($scope.cart.salesTax) - parseFloat(removeItem.itemPrice)*.0825;
     $scope.cart.salesTax = parseFloat($scope.cart.salesTax).toFixed(2);
 
-    // Add updated subtotal and tax for this item to the running cart total
+    // Add updated subtotal and tax for the new running cart total
     $scope.cart.total = parseFloat($scope.cart.subtotal) + parseFloat($scope.cart.salesTax);
     $scope.cart.total = parseFloat($scope.cart.total).toFixed(2);
 
@@ -144,7 +141,7 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
 
   $scope.sendToPayment = function(){
 
-    // Retrieve the Stripe session from php
+    // Post the cart variables to add to the php session
     var request = $http({
         method: "post",
         url: "./ajax/addCartToSession.php",
@@ -160,10 +157,10 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
         $scope.stripePaymentIntent = data;
         $window.location.href = "./payment/checkout.html";
     });
-
   };
 
   $scope.changePage = function(page){
+    // Toggle page views based on user action
     $scope.page = page;
 
     if(page=="order"){
@@ -174,24 +171,32 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
     }
   }
 
+
   /***** Local Functions -- usable only locally in this controller *****/
+
   function getConfirmation() {
     $http.post("./ajax/getConfirmation.php").success(function(data){
+
+      console.log(data);
+      console.log(data.orderItems);
+      console.log(data.orderItems.cartItems);
 
       // Populate the confirmation object with data stored on the PHP session variables
       $scope.confirmation = {
         "stripePaymentId": data.stripePaymentId,
         "orderSubtotal": data.orderSubtotal,
-        "orderTotal": data.orderTotal
+        "orderTotal": data.orderTotal,
+        "orderItems": data.orderItems.cartItems
       }
     });
   }
 
+  // Make sure we load the correct view based on the url
   function checkPage(){
 
     if($location.path()=="/home"){
       $scope.page='order';
-      $location.path('/order');
+      $location.path('/order'); // redirects /home to /order
     }
     else if($location.path()=="/order"){
       $scope.page='order';
@@ -200,14 +205,12 @@ angular.module('stripeApp').controller('orderController', function ($scope, $htt
       $scope.page='cart';
     }
     else if($location.path()=="/confirmation"){
-      getConfirmation();
+      getConfirmation(); // call function to retrieve confirmation variables
       $scope.page='confirmation';
     }
     else{
       $scope.page='order';
     }
-    
   };
-  
 
 });

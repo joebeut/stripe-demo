@@ -1,7 +1,11 @@
+// app.js - Foundation of the Angular app. 
+
 'use strict';
 
+// Create the Angular App, inject required libraries
 var myAPP = angular.module('stripeApp', [ 'ngRoute']);
 
+// This function establishes the required routes to support browser navigation within single-page app
 myAPP.config(function($routeProvider) {
         $routeProvider
              .when('/', {
@@ -26,6 +30,7 @@ myAPP.config(function($routeProvider) {
               });
     });
 
+// This function allows changing the url without reloading the page
 myAPP.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
     var original = $location.path;
     $location.path = function (path, reload) {

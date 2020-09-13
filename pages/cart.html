@@ -1,9 +1,12 @@
+<!-- cart.html - This view displays the items in the shopping cart -->
 <div class="item-container">
 
   <div class="item-container-title">Your Cart</div>
   
+  <!-- Display message only if no items in cart -->
   <div class="cart-subtitle" ng-if="cart.itemCount==0">No items in cart.</div>
 
+  <!-- Loop through and display all items in cart -->
   <div ng-repeat="item in cart.cartItems track by $index">
     <div class="item-box cart-box" style="cursor:pointer;">
       <div class="item-box-left">
@@ -20,20 +23,22 @@
         </div>
       </div>
       <div class="item-box-right">
-        <div class="item-add" ng-click="removeFromCart(item)"><img src="./img/remove_circle_outline.svg" class="cart-icon cart-box-icon" width="24px"></div>
+        <!-- Custom button to remove items from cart -->
+        <div class="item-add" ng-click="removeFromCart(item)">
+          <img src="./img/remove_circle_outline.svg" class="cart-icon cart-box-icon" width="24px">
+        </div>
       </div>
     </div>
-
   </div>
 
+  <!-- Display order payment information - only if cart has item(s) -->
   <div class="cart-info" ng-if="cart.itemCount!=0">
     <div class="cart-subtotal">Subtotal: ${{cart.subtotal}}</div>
     <div class="cart-subtotal">Sales Tax: ${{cart.salesTax}}</div>
     <div class="cart-total">Total: ${{cart.total}}</div>
   </div>
-
  
-
+  <!-- Display continue to payment button - only if cart has item(s) -->
   <div class="cart-info" ng-if="cart.itemCount!=0">
     <div class="order-button" ng-click="sendToPayment()" style="cursor:pointer;">Continue</div>
   </div>

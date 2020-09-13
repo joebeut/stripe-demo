@@ -1,15 +1,16 @@
 <?php 
-  session_start();
+	// getConfirmation.php
+	// This file retrieves the order info from the PHP Session variables and returns them as a JSON object
+	session_start();
 
-  // Price is number of cents, so $9.50 is 950
+	$confirmation = array(
+		'stripePaymentId' => $_SESSION['stripePaymentId'],
+		'orderSubtotal' => $_SESSION['subtotal'],
+		'orderTotal' => $_SESSION['total'],
+		'orderItems' => $_SESSION['cart']
+	);
 
-  $confirmation = array(
-    'stripePaymentId' => $_SESSION['stripePaymentId'],
-    'orderSubtotal' => $_SESSION['subtotal'],
-    'orderTotal' => $_SESSION['total'],
-  );
-
-  echo $json_response = json_encode($confirmation);
+	echo $json_response = json_encode($confirmation);
 ?>
 
 

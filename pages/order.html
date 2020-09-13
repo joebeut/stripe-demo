@@ -1,9 +1,12 @@
+<!-- order.html - This view displays all product items, dynamically populated by Angular from JSON -->
 <div class="item-container">
-
   <div class="item-container-title">Swim Gear Catalog</div>
 
+  <!-- Loop through and display all product items. This uses Angular to populate the object attributes from JSON -->
   <div ng-repeat="item in orderItems">
     <div class="item-box" style="cursor:pointer;">
+      
+      <!-- Item attributes displayed on the left side of the product box -->
       <div class="item-box-left">
         <div class="item-line">
           <div class="item-title-text">{{item.itemName}}</div>
@@ -17,9 +20,13 @@
           <div class="item-price">${{item.itemPrice}}</div>
         </div>
       </div>
+      
+      <!-- Add to cart button on the right side of the product box -->
       <div class="item-box-right">
-          <div class="item-add" ng-click="addToCart(item)" ng-if="!item.selected"><img src="./img/add_shopping_cart.svg" class="cart-icon" width="24px"></div>
-          <div class="item-add" ng-click="addToCart(item)" ng-if="item.selected"><img src="./img/add_shopping_cart.svg" class="cart-icon" width="24px"></div>
+          <!-- Custom shopping cart button using Google Material Design icon -->
+          <div class="item-add" ng-click="addToCart(item)">
+            <img src="./img/add_shopping_cart.svg" class="cart-icon" width="24px">
+          </div>
         </div>
     </div>
   </div>

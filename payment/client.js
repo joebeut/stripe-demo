@@ -1,3 +1,5 @@
+// client.js - mostly code provided by the Stripe Payments API sample with minor modifications to pass payment ID back to app
+
 // A reference to Stripe.js initialized with your real test publishable API key.
 var stripe = Stripe("pk_test_51HQ5M8KExCRHmG0yNRioPNXa2MGW5deRKKaGZD2BR7vZqRs8LUdeLfbaprwW2oya5rdsrOhONDGxVQ5Pk4OqrPMA000mRDGOrH");
 // The items the customer wants to buy
@@ -82,7 +84,9 @@ var orderComplete = function(paymentIntentId) {
     );
   document.querySelector(".result-message").classList.remove("hidden");
   document.querySelector("button").disabled = true;
-  window.location.href = "../ajax/getStripePaymentId.php?id="+paymentIntentId;
+
+  // Redirect to store the payment ID on the PHP Session
+  window.location.href = "../ajax/setStripePaymentId.php?id="+paymentIntentId;
 };
 // Show the customer the error from Stripe if their card fails to charge
 var showError = function(errorMsgText) {
