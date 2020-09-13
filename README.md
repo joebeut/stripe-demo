@@ -1,18 +1,15 @@
-Welcome to Joe's Swim Shop.
+#Welcome to Joe’s Swim Shop!
 
-To start, I thought through the main views I would be displaying the customer. I'm am including a home page just for fun, but the critical views are the order page that lists the items for sale, the cart page, and the confirmation page.
+Joe’s Swim Shop is a basic e-commerce web application that allows you to order the finest in swimming gear. You are able to browse our inventory, add items to your shopping cart, remove items from the cart, and pay for your order with your credit card through Stripe. 
 
-Since I am using Angular for the front end/JavaScript, I will have to link out to a PHP page to run process the payment using the Stripe Payments PHP API. Then I will redirect the user back to the Angular app for the confirmation page. 
+Since Joe’s Swim Shop is similar to other Stripe-enabled apps I have built in the past, I challenged myself not to use any code or designs from previous projects. I mapped out the basic functionality required to provide a suitable e-commerce user experience. I first decided on a concept, then I crafted the product list in a JSON object with the attributes necessary for the shopping experience. These included product name, type, brand, description, and price. 
 
-I like using Angular for my payments app because the single-page architecture makes all of the user interactions feel real-time. I can also use AJAX calls to the MySQL database on the back end to pull any information, like the items and price list. 
+I chose to use the updated Payment Intents API over the older Charges API. Because of this, the Stripe ID displayed on the confirmation page starts with “pi_” instead of “ch_”. I prefer Payments to Checkout because it allows me to insert the Stripe Elements directly into my JavaScript application, so I am able to control the entire design and workflow. During my research, I learned that Payment Intents now enables 3Dsecure, which supports an asynchronous payment flow that checks if the payment requires a bank challenge. Since this is a requirement in Europe, it is best to ensure this app is compliant for my soon-to-be global user base.
 
-My challenge here is not to copy a previous app that I've built with Stripe, and to not add too much funcationality. I will use the basic Angular/PHP structure that I've used for other apps/websites I've built for other side projects.
+My preferred framework is a modified LAMP stack that utilizes Angular on the frontend. I like Angular’s capabilities as a single page application, which allows me to dynamically populate html elements with JavaScript variables and make super-fast transitions between pages or views. When interacting with the PHP backend, I can build out my own API endpoints that I can hit via AJAX in the Angular controller. I then use PHP to store session variables and query my database.
 
-A few things that could be added to the basic functionality:
-- Basic CRUD functions like pulling shopping items from DB
-- Storing orders in DB
-- Storing customer information in DB
-- Adding a view for more information on an item before adding it to the cart
-- Sending order confirmation view email (AWS SES) or text (Twilio)
+If I were to build this into a production application, I would need to add both additional user-facing features and build out the backend infrastructure. First, I would add attributes to each item to allow the user to customize their order. For example, I could add item count and options to select the size or color. I also would need to collect more information about the user, like their name, email, and address for billing and shipping. Since I expect my users to become loyal customers, they will need to be able to create accounts with corresponding Stripe customer objects to give them the option to store their payment methods for future use.
 
-Current state of app processes the payment via the Stripe Payment Intent API. 
+On the backend, I need to stand up a database to store the product catalog, order details, and transaction history. Whenever transactions are involved, I tend to lean toward a SQL database, but I’d be tempted to implement a NoSQL DB since the product items could have lots of options that would require flexible and nested attributes. If I plan to allow third-party sellers on my platform, I would also need Connect accounts for each seller to collect my platform fees and faciliate their payouts.
+
+Thank you for visiting Joe’s Swim Shop! We look forward to helping you with all of your swimming gear needs.
